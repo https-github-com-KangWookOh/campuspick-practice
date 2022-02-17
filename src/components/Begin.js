@@ -1,10 +1,12 @@
-//»çÀÌÆ®¿¡ Á¢¼ÓÇßÀ» ¶§ ³ªÅ¸³ª´Â Ã¹¹øÂ° È­¸é
+//ì‚¬ì´íŠ¸ì— ì ‘ì†í–ˆì„ ë•Œ ë‚˜íƒ€ë‚˜ëŠ” ì²«ë²ˆì§¸ í™”ë©´
 import React from "react";
 import styled from "styled-components";
 
 const BaseBlock = styled.div`
   height: 100vh;
   background: white;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 const LogoWrapper = styled.div`
@@ -24,16 +26,17 @@ const Logo = styled.div`
 `;
 
 const Form = styled.div`
+  height: 100%;
   justify-content: center;
   align-items: center;
 `;
 
-//¸¸µç ¹Ú½º¸¦ return
+//ë§Œë“  ë°•ìŠ¤ë¥¼ return
 function Begin({ children }) {
   return (
     <BaseBlock>
       <LogoWrapper>
-        <Logo></Logo>
+        <Logo />
       </LogoWrapper>
       <Form>{children}</Form>
     </BaseBlock>

@@ -1,9 +1,9 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import Begin from "./components/Begin.js"; //½ÃÀÛÈ­¸é ·»´õ¸µ
-import LoginForm from "./components/LoginForm.js"; //·Î±×ÀÎ Æû
+import Begin from "./components/Begin"; //ì‹œì‘í™”ë©´ ë Œë”ë§
+import LoginForm from "./components/LoginForm"; //ë¡œê·¸ì¸ í¼
 
-//ÀüÃ¼ ¹è°æÈ­¸é
+//ì „ì²´ ë°°ê²½í™”ë©´
 const GlobalStyle = createGlobalStyle`
   body{
     background: #ffffff;
