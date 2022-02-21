@@ -1,5 +1,6 @@
 //회원가입폼
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
 const SignUpBlock = styled.div`
@@ -80,24 +81,50 @@ const style = {
   color: "rgba(0, 0, 0, 0.51)",
 };
 function SignUpForm() {
+  const [inputValue, setInputValue] = useState({
+    nickName: "",
+    email: "",
+    password: "",
+  });
+  const {nickName, email, password};
+  //onChange 이벤트가 발생했을 때 input값들을 저장
+  const handleInput = e => {
+      const {name, value} = e.target;
+      setInputValue({...inputValue, [name] : value});
+  }
   return (
     <SignUpBlock>
       <InsertForm>
         <label style={style} htmlFor="nickname">
           닉네임
         </label>
-        <NickInput id="nickname" placeholder="닉네임" />
+        <NickInput
+          id="nickname"
+          placeholder="닉네임"
+          name="nickName"
+          onChange={handleInput}
+        />
         <label style={style} htmlFor="email">
           이메일
         </label>
-        <EmailInput id="email" placeholder="이메일" />
+        <EmailInput
+          id="email"
+          placeholder="이메일"
+          name="email"
+          onChange={handleInput}
+        />
         <label style={style} htmlFor="password">
           비밀번호
         </label>
-        <PwdInput id="password" placeholder="비밀번호" />
+        <PwdInput
+          id="password"
+          placeholder="비밀번호"
+          name="password"
+          onChange={handleInput}
+        />
       </InsertForm>
       <BtnWrap>
-        <SignBtn>가입하기</SignBtn>
+        <SignBtn onClick={handleBtnValid}>가입하기</SignBtn>
         <BackBtn>뒤로가기</BackBtn>
       </BtnWrap>
     </SignUpBlock>

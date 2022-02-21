@@ -30,16 +30,16 @@ const GlobalStyle = createGlobalStyle`
 //   );
 // }
 
-// function App() {
-//   return (
-//     <div>
-//       <GlobalStyle />
-//       <SignUp>
-//         <SignUpForm />
-//       </SignUp>
-//     </div>
-//   );
-// }
+function App() {
+  return (
+    <div>
+      <GlobalStyle />
+      <SignUp>
+        <SignUpForm />
+      </SignUp>
+    </div>
+  );
+}
 
 // function App() {
 //   return (
@@ -52,15 +52,15 @@ const GlobalStyle = createGlobalStyle`
 //   );
 // }
 
-function App() {
-  return (
-    <div>
-      <GlobalStyle />
-      <FindPwd>
-        <FindPwdForm />
-      </FindPwd>
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div>
+//       <GlobalStyle />
+//       <FindPwd>
+//         <FindPwdForm />
+//       </FindPwd>
+//     </div>
+//   );
+// }
 
 export default App;
