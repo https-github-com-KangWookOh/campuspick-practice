@@ -1,7 +1,7 @@
 //회원가입폼
 import React, { useState } from "react";
-import axios from "axios";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const SignUpBlock = styled.div`
   height: 100%;
@@ -12,7 +12,7 @@ const InsertForm = styled.form`
   position: absolute;
   height: 50vh;
   width: 365px;
-  top: 10%;
+  top: 5%;
   left: 50%;
   transform: translate(-50%);
 `;
@@ -26,7 +26,7 @@ const NickInput = styled.input`
   box-sizing: border-box;
 `;
 
-const EmailInput = styled.input`
+const IdInput = styled.input`
   display: block;
   width: 350px;
   height: 44px;
@@ -44,9 +44,17 @@ const PwdInput = styled.input`
   box-sizing: border-box;
 `;
 
+const PwdCheckInput = styled.input`
+  display: block;
+  width: 350px;
+  height: 44px;
+  margin: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+`;
+
 const BtnWrap = styled.div`
   position: absolute;
-  top: 65%;
   left: 50%;
   transform: translate(-50%);
   border: none;
@@ -83,18 +91,30 @@ const style = {
 function SignUpForm() {
   const [inputValue, setInputValue] = useState({
     nickName: "",
-    email: "",
+    id: "",
     password: "",
+    pwdCheck: "",
   });
-  const {nickName, email, password};
+  const { nickName, id, password, pwdCheck } = inputValue; //비구조화 할당을 통해 값 추출
   //onChange 이벤트가 발생했을 때 input값들을 저장
-  const handleInput = e => {
-      const {name, value} = e.target;
-      setInputValue({...inputValue, [name] : value});
-  }
+  const handleInput = (e) => {
+    //name과 value를 추출
+    const { name, value } = e.target;
+    //기존의 inputValue 객체를 복사
+    //name 키를 가진 값을 value로 설정
+    setInputValue({ ...inputValue, [name]: value });
+  };
+
+  const onSubmit = (e) => {
+    //리프레쉬 되는 것을 방지
+    e.preventDefault();
+    if (password !== pwdCheck) {
+      return alert("비밀번호가 일치하지 않습니다");
+    }
+  };
   return (
     <SignUpBlock>
-      <InsertForm>
+      <InsertForm onSubmit={onSubmit}>
         <label style={style} htmlFor="nickname">
           닉네임
         </label>
@@ -104,29 +124,42 @@ function SignUpForm() {
           name="nickName"
           onChange={handleInput}
         />
-        <label style={style} htmlFor="email">
-          이메일
+        <label style={style} htmlFor="id">
+          아이디
         </label>
-        <EmailInput
-          id="email"
-          placeholder="이메일"
-          name="email"
+        <IdInput
+          id="id"
+          placeholder="아이디"
+          name="id"
           onChange={handleInput}
         />
         <label style={style} htmlFor="password">
           비밀번호
         </label>
         <PwdInput
+          type="password"
           id="password"
           placeholder="비밀번호"
           name="password"
           onChange={handleInput}
         />
+        <label style={style} htmlFor="password">
+          비밀번호 확인
+        </label>
+        <PwdCheckInput
+          type="password"
+          id="pwdCheck"
+          placeholder="비밀번호 확인"
+          name="pwdCheck"
+          onChange={handleInput}
+        />
+        <BtnWrap>
+          <SignBtn type="submit">가입하기</SignBtn>
+          <Link to="/">
+            <BackBtn>뒤로가기</BackBtn>
+          </Link>
+        </BtnWrap>
       </InsertForm>
-      <BtnWrap>
-        <SignBtn onClick={handleBtnValid}>가입하기</SignBtn>
-        <BackBtn>뒤로가기</BackBtn>
-      </BtnWrap>
     </SignUpBlock>
   );
 }

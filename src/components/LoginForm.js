@@ -1,6 +1,7 @@
 //로그인폼
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const LoginBlock = styled.div`
   height: 100%;
@@ -113,7 +114,9 @@ function LoginForm() {
       </BtnWrap>
       <JoinBlock>
         <AskSpan>아직 계정이 없으신가요?</AskSpan>
-        <JoinBtn>회원가입</JoinBtn>
+        <Link to="/signup">
+          <JoinBtn>회원가입</JoinBtn>
+        </Link>
       </JoinBlock>
     </LoginBlock>
   );
