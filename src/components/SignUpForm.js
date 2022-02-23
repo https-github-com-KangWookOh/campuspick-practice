@@ -1,7 +1,8 @@
 //회원가입폼
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignUpBlock = styled.div`
   height: 100%;
@@ -84,6 +85,7 @@ const BackBtn = styled.button`
   margin: 10px;
   color: white;
 `;
+
 const style = {
   padding: "9px",
   color: "rgba(0, 0, 0, 0.51)",
@@ -95,7 +97,24 @@ function SignUpForm() {
     password: "",
     pwdCheck: "",
   });
+  //에러 처리
+  const [pwdCheckErr, setPwdCheckErr] = useState("");
   const { nickName, id, password, pwdCheck } = inputValue; //비구조화 할당을 통해 값 추출
+  //서버에 post
+  const navigate = useNavigate();
+  const onHandlePost = async () => {
+    const postData = { nickName, id, password };
+    await axios
+      .post("", postData)
+      .then(function (response) {
+        console.log(response, "success");
+        navigate.push("/");
+      })
+      .catch(function (e) {
+        console.log(e);
+        alert("회원가입에 실패하였습니다. 다시 시도하세요");
+      });
+  };
   //onChange 이벤트가 발생했을 때 input값들을 저장
   const handleInput = (e) => {
     //name과 value를 추출
@@ -103,13 +122,17 @@ function SignUpForm() {
     //기존의 inputValue 객체를 복사
     //name 키를 가진 값을 value로 설정
     setInputValue({ ...inputValue, [name]: value });
+    setPwdCheckErr("");
   };
-
   const onSubmit = (e) => {
     //리프레쉬 되는 것을 방지
     e.preventDefault();
     if (password !== pwdCheck) {
-      return alert("비밀번호가 일치하지 않습니다");
+      return setPwdCheckErr("비밀번호가 일치하지 않습니다");
+    }
+    //유효성 검사 통과하면 post 실행
+    if (password === pwdCheck) {
+      onHandlePost();
     }
   };
   return (
@@ -128,6 +151,7 @@ function SignUpForm() {
           아이디
         </label>
         <IdInput
+          required
           id="id"
           placeholder="아이디"
           name="id"
@@ -137,6 +161,7 @@ function SignUpForm() {
           비밀번호
         </label>
         <PwdInput
+          required
           type="password"
           id="password"
           placeholder="비밀번호"
@@ -147,12 +172,14 @@ function SignUpForm() {
           비밀번호 확인
         </label>
         <PwdCheckInput
+          required
           type="password"
           id="pwdCheck"
           placeholder="비밀번호 확인"
           name="pwdCheck"
           onChange={handleInput}
         />
+        {pwdCheckErr}
         <BtnWrap>
           <SignBtn type="submit">가입하기</SignBtn>
           <Link to="/">
