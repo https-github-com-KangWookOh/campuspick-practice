@@ -107,12 +107,15 @@ function SignUpForm() {
     await axios
       .post("", postData)
       .then(function (response) {
+        //회원가입 성공
         console.log(response, "success");
         navigate.push("/");
       })
       .catch(function (e) {
+        //회원가입 실패
         console.log(e);
         alert("회원가입에 실패하였습니다. 다시 시도하세요");
+        window.location.replace("/signup");
       });
   };
   //onChange 이벤트가 발생했을 때 input값들을 저장

@@ -2,92 +2,56 @@
 import React from "react";
 import styled from "styled-components";
 
-const SignUpBlock = styled.div`
-  height: 100%;
+const Block = styled.div`
   position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
 `;
 
 const InsertForm = styled.form`
   position: absolute;
-  height: 50vh;
-  width: 365px;
-  top: 20%;
+  top: 30%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
 `;
-
-const NickInput = styled.input`
+const Span = styled.span`
   display: block;
-  width: 350px;
-  height: 44px;
-  margin: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  font-weight: normal;
+  font-size: 20px;
 `;
-
 const PwdInput = styled.input`
   display: block;
-  width: 350px;
-  height: 44px;
-  margin: 15px;
+  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.5);
+  width: 250px;
+  margin: 10px;
+  height: 39px;
 `;
-
-const BtnWrap = styled.div`
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%);
-  border: none;
-  margin-top: 15px;
-  width: 240px;
-  height: 60px;
-`;
-
-const FindBtn = styled.button`
+const FindIdBtn = styled.button`
+  display: block;
   cursor: pointer;
   border: none;
   background: #1dcdff;
-  display: inline-block;
-  width: 100px;
+  width: 250px;
   height: 39px;
   margin: 10px;
   color: white;
 `;
 
-const BackBtn = styled.button`
-  cursor: pointer;
-  border: none;
-  background: #ff7c1d;
-  display: inline-block;
-  width: 100px;
-  height: 39px;
-  margin: 10px;
-  color: white;
-`;
-const style = {
-  padding: "9px",
-  color: "rgba(0, 0, 0, 0.51)",
-};
 function FindIdForm() {
   return (
-    <SignUpBlock>
+    <Block>
       <InsertForm>
-        <label style={style} htmlFor="nickname">
-          닉네임
-        </label>
-        <NickInput id="nickname" placeholder="닉네임" />
-        <label style={style} htmlFor="password">
-          비밀번호
-        </label>
-        <PwdInput id="password" placeholder="비밀번호" />
+        <Span>아이디 찾기</Span>
+        <PwdInput placeholder="*비밀번호를 입력해주세요" />
+        <FindIdBtn>아이디 찾기</FindIdBtn>
       </InsertForm>
-      <BtnWrap>
-        <FindBtn>찾기</FindBtn>
-        <BackBtn>뒤로가기</BackBtn>
-      </BtnWrap>
-    </SignUpBlock>
+    </Block>
   );
 }
 

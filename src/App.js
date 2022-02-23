@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import FindPage from "./pages/FindPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route exact path="/signup" element={<SignupPage />} />
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/main" element={<MainPage />} />
+            <Route exact path="/find" element={<FindPage />} />
           </Routes>
         </div>
       </BrowserRouter>

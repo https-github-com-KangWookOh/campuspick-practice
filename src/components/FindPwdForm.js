@@ -1,56 +1,45 @@
 //비밀번호찾기 폼
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const SignUpBlock = styled.div`
+const Block = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 50%;
   height: 100%;
   position: relative;
 `;
 
 const InsertForm = styled.form`
   position: absolute;
-  height: 50vh;
-  width: 365px;
-  top: 20%;
+  top: 30%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
 `;
-
-const NickInput = styled.input`
+const Span = styled.span`
   display: block;
-  width: 350px;
-  height: 44px;
-  margin: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  font-weight: normal;
+  font-size: 20px;
 `;
-
 const IdInput = styled.input`
   display: block;
-  width: 350px;
-  height: 44px;
-  margin: 15px;
+  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.5);
+  width: 250px;
+  margin: 10px;
+  height: 39px;
 `;
-
-const BtnWrap = styled.div`
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%);
-  border: none;
-  margin-top: 15px;
-  width: 240px;
-  height: 60px;
-`;
-
-const FindBtn = styled.button`
+const FindPwdBtn = styled.button`
+  display: block;
   cursor: pointer;
   border: none;
   background: #1dcdff;
-  display: inline-block;
-  width: 100px;
+  width: 250px;
   height: 39px;
   margin: 10px;
   color: white;
@@ -65,30 +54,24 @@ const BackBtn = styled.button`
   height: 39px;
   margin: 10px;
   color: white;
+  position: absolute;
+  top: 75%;
+  right: 5%;
 `;
-const style = {
-  padding: "9px",
-  color: "rgba(0, 0, 0, 0.51)",
-};
-function FindIdForm() {
+
+function FindPwdForm() {
   return (
-    <SignUpBlock>
+    <Block>
       <InsertForm>
-        <label style={style} htmlFor="nickname">
-          닉네임
-        </label>
-        <NickInput id="nickname" placeholder="닉네임" />
-        <label style={style} htmlFor="password">
-          아이디
-        </label>
-        <IdInput id="password" placeholder="비밀번호" />
+        <Span>비밀번호 찾기</Span>
+        <IdInput placeholder="*아이디를 입력해주세요" />
+        <FindPwdBtn>비밀번호 찾기</FindPwdBtn>
       </InsertForm>
-      <BtnWrap>
-        <FindBtn>찾기</FindBtn>
+      <Link to="/login">
         <BackBtn>뒤로가기</BackBtn>
-      </BtnWrap>
-    </SignUpBlock>
+      </Link>
+    </Block>
   );
 }
 
-export default FindIdForm;
+export default FindPwdForm;

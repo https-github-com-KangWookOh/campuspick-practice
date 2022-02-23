@@ -1,4 +1,4 @@
-//비밀번호 찾기 화면
+//아이디, 비밀번호 찾기
 import React from "react";
 import styled from "styled-components";
 
@@ -7,6 +7,7 @@ const BaseBlock = styled.div`
   background: white;
   overflow-x: hidden;
   overflow-y: hidden;
+  position: relative;
 `;
 
 const TitleWrapper = styled.div`
@@ -38,17 +39,18 @@ const Form = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
-function FindPwd({ children }) {
+function Find({ children }) {
   return (
     <BaseBlock>
       <TitleWrapper>
         <Logo />
-        <Title>비밀번호 찾기</Title>
+        <Title>아이디/비밀번호 찾기</Title>
       </TitleWrapper>
       <Form>{children}</Form>
     </BaseBlock>
   );
 }
-export default FindPwd;
+export default Find;

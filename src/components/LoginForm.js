@@ -109,8 +109,12 @@ function LoginForm() {
       </InsertForm>
       <LoginBtn>로그인</LoginBtn>
       <BtnWrap>
-        <FindEmailBtn>아이디 찾기</FindEmailBtn>
-        <FindPwdBtn>비밀먼호 찾기</FindPwdBtn>
+        <Link to="/find">
+          <FindEmailBtn>아이디 찾기</FindEmailBtn>
+        </Link>
+        <Link to="/find">
+          <FindPwdBtn>비밀먼호 찾기</FindPwdBtn>
+        </Link>
       </BtnWrap>
       <JoinBlock>
         <AskSpan>아직 계정이 없으신가요?</AskSpan>
