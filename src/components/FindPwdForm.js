@@ -60,15 +60,38 @@ const BackBtn = styled.button`
 `;
 
 function FindPwdForm() {
+  const navigate = useNavigate();
+  const handleInput = (e) => {
+    e.preventDefault();
+    const obj = { pwd: e.target.value };
+    axios("", {
+      method: "POST",
+      data: obj,
+      headers: new Headers(),
+    })
+      .then(function (response) {
+        //비밀번호에 해당하는 아이디 존재함
+        console.log(response, "비밀번호 존재함");
+        alert(`아이디는 ${response.data}입니다.`);
+        navigate.push("/signup");
+      })
+      .catch(function (e) {
+        console.log(e);
+        alert(
+          "아이디에 해당하는 비밀번호가 존재하지 않습니다. 다시 입력해주세요."
+        );
+        window.location.replace("/FindPage");
+      });
+  };
   return (
     <Block>
-      <InsertForm>
+      <InsertForm onSubmit={handleInput}>
         <Span>비밀번호 찾기</Span>
         <IdInput placeholder="*아이디를 입력해주세요" />
         <FindPwdBtn>비밀번호 찾기</FindPwdBtn>
       </InsertForm>
       <Link to="/login">
-        <BackBtn>뒤로가기</BackBtn>
+        <BackBtn type="submit">뒤로가기</BackBtn>
       </Link>
     </Block>
   );
